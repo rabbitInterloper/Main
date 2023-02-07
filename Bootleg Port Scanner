@@ -1,0 +1,37 @@
+#!/bin/python3
+
+# 1) Allow user to specify target
+# 2) Make requests to every port specified
+# 3) Return only open ports
+
+# Technically works but is no nmap
+
+import socket
+import sys
+
+print("Bootleg Scanner")
+target = input(str("Target IP: "))
+
+try:
+
+    # Creating a IPv4 and Port resolution, assigned it to variable s
+    for port in range(1, 65535):
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        socket.setdefaulttimeout(1)
+    # Have variable s run a function with target and port variables
+        result = s.connect_ex((target, port))
+        if result == 0:
+            print(f"Port {port} is open")
+        s.close()
+
+# Standard exceptions so loop doesn't soft lock my computer :))
+
+except KeyboardInterrupt:
+        print("\n Exiting Program !!!!")
+        sys.exit()
+except socket.gaierror:
+        print("\n Hostname Could Not Be Resolved !!!!")
+        sys.exit()
+except socket.error:
+        print("\n Server not responding !!!!")
+        sys.exit()
