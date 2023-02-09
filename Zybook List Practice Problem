@@ -1,3 +1,5 @@
+#!/bin/python3
+
 my_flower1 = input()
 my_flower2 = input()
 my_flower3 = input()
